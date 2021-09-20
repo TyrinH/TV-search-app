@@ -1,17 +1,33 @@
 const searchForm = document.querySelector('#searchForm')
+const deleteBtn = document.querySelector('#deleteBtn')
+const imgContainer = document.querySelector('#imgContainer')
 
-searchForm.addEventListener('submit', function(e) {
+searchForm.addEventListener('submit', async function(e) {
     e.preventDefault();
+    const searchKey = searchForm.query.value
+    const config = {params: {q: searchKey} }
+    const res = await axios.get('https://api.tvmaze.com/search/shows', config)
+    tvImages(res.data)
+    searchForm.query.value = '';
 
-    console.dir(searchForm.query.value)
 })
-const getTvShows = async () => {
-    try {
-        const res = await axios.get('https://api.tvmaze.com/search/shows?q=girls')
-        console.log(res.data[0].show.name)
 
-    } catch (e){
-        console.log(e)
+deleteBtn.addEventListener('click', function(e) {
+    let container = document.getElementById('imgContainer');
+    while (container.firstChild) {
+        container.removeChild(container.firstChild)
+    }
 
+})
+const tvImages = (shows) => {
+    for (let result of shows) {
+        if (result.show.image) {
+            const img = document.createElement('IMG');
+            img.src = result.show.image.medium;
+            //document.body.append(img)
+            document.getElementById('imgContainer').appendChild(img)
+
+        }
     }
 }
+
