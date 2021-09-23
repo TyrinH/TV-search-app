@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+    padding-top: 1.5rem;
+}
+
+#searchForm {
+    text-align: center;
+    padding-top: 1.5rem;
+}
+
+#imgContainer {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
