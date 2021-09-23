@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href= "app.css">
     <title>TV Search App</title>
 
@@ -11,18 +12,34 @@
 
 </head>
 <body>
-    <h1>TV Search App</h1>
 
-    <form action="#" id="searchForm">
-        <input type="text" name="query" placeholder="Enter your TV show here">
-        <button>Search</button>
-    </form>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              TV Search App
+            </a>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <form action="#" id="searchForm">
+                    <input type="text" name="query" placeholder="Enter your TV show here">
+                    <button class="button is-primary button is-small">Search</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
 
     <div id='imgContainer'>
 
     </div>
 
-    <button id='deleteBtn'>Remove Images</button>
+    <button id='deleteBtn' class="button is-danger">Remove Images</button>
     
     <script src="app.js"></script>
 </body>
