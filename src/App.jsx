@@ -4,16 +4,19 @@ import axios from "axios";
 import ShowView from "./showView";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
+import Item from "@mui/material/Grid";
 
 function App() {
   const [shows, setShows] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [lastQuery, setLastQuery] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getShow = async () => {
       const show = await fetchShows();
       setShows(show);
+      setLoading(false);
     };
     getShow();
   }, [searchQuery]);
@@ -49,10 +52,12 @@ function App() {
   return (
     <div className="App">
       <Header setSearchQuery={setSearchQuery} />
-      <Grid container xs={12} justifyContent="center" alignItems="center">
+      <Grid container item xs={12} justifyContent="center" alignItems="center">
+        <Item>
         <Card>
-          {shows.show ? <ShowView shows={shows} /> : <div>loading...</div>}
+          { loading === false ? <ShowView shows={shows}  /> : <div>loading...</div> }
         </Card>
+        </Item>
       </Grid>
     </div>
   );

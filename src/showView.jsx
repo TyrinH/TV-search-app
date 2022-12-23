@@ -7,9 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 
 function showView({ shows }) {
-  console.log("PROPS", shows);
   return (
-    // <div>
     <Card sx={{ maxWidth: 374 }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" align="center">
@@ -20,19 +18,14 @@ function showView({ shows }) {
         </Typography>
         <CardMedia
           component="img"
-          // height="194"
           image={shows.show.image.original}
           alt={shows.show.name}
         />
-        {/* <img src={shows.show.image.medium} alt={shows.show.name} /> */}
-        {/* </CardMedia> */}
-        <Typography variant="body2" color="text.secondary">
-          {shows.show.summary}
+        <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: shows.show.summary }}>
+          {/* {shows.show.summary} */}
         </Typography>
       </CardContent>
     </Card>
-
-    // </div>
   );
 }
 
