@@ -85,11 +85,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              // onBlur={ (e) => {
-              //   if (e.target.value !== '') {
-              //     setSearchQuery(e.target.value)
-              //   }
-              // } }
             />
           </Search>
           </form>
