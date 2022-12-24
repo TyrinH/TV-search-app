@@ -10,6 +10,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
 function header({setSearchQuery}) {
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSearchQuery(e.target[0].value);
+  }
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -73,6 +77,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
           >
             TV Show Finder
           </Typography>
+          <form onSubmit={handleSubmit}>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -80,13 +85,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              onBlur={ (e) => {
-                if (e.target.value !== '') {
-                  setSearchQuery(e.target.value)
-                }
-              } }
+              // onBlur={ (e) => {
+              //   if (e.target.value !== '') {
+              //     setSearchQuery(e.target.value)
+              //   }
+              // } }
             />
           </Search>
+          </form>
         </Toolbar>
       </AppBar>
     </Box>
