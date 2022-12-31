@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "./header";
 import axios from "axios";
 import ShowView from "./showView";
+import ShowDetails from "./showDetails";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Grid";
@@ -20,7 +21,7 @@ function App() {
     getShow();
   }, [searchQuery]);
   const fetchShows = async () => {
-    if (searchQuery === '') {
+    if (searchQuery === "") {
       setSearchQuery(localStorage.getItem("lastQuery"));
     }
     const config = { params: { q: searchQuery.toUpperCase() } };
@@ -35,10 +36,7 @@ function App() {
         config
       );
       const data = await res.data;
-      localStorage.setItem(
-        `${data.name.toUpperCase()}`,
-        JSON.stringify(data)
-      );
+      localStorage.setItem(`${data.name.toUpperCase()}`, JSON.stringify(data));
       localStorage.setItem(`lastQuery`, `${data.name.toUpperCase()}`);
       return data;
     }
@@ -48,11 +46,28 @@ function App() {
     <div className="App">
       <Header setSearchQuery={setSearchQuery} />
       <Grid container item xs={12} justifyContent="center" alignItems="center">
-        <Item>
-        <Card>
-          { loading === false ? <ShowView shows={shows}  /> : <div>loading...</div> }
-        </Card>
-        </Item>
+        <Grid xs={6}>
+          <Item>
+            <Card>
+              {loading === false ? (
+                <ShowView shows={shows} />
+              ) : (
+                <div>loading...</div>
+              )}
+            </Card>
+          </Item>
+        </Grid>
+        <Grid xs={6}>
+          <Item>
+            <Card>
+              {loading === false ? (
+                <ShowDetails shows={shows} />
+              ) : (
+                <div>loading...</div>
+              )}
+            </Card>
+          </Item>
+        </Grid>
       </Grid>
     </div>
   );

@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
+import createTheme from '@mui/material/styles/createTheme';
 
 function header({setSearchQuery}) {
   function handleSubmit(e) {
@@ -17,7 +19,7 @@ function header({setSearchQuery}) {
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.black, 0.15),
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -55,10 +57,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+          <ThemeProvider theme={darkTheme}>
+      <AppBar position="static" color='primary'>
         <Toolbar>
           {/* <IconButton
             size="large"
@@ -90,6 +98,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
           </form>
         </Toolbar>
       </AppBar>
+      </ThemeProvider>
     </Box>
   );
 }
