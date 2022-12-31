@@ -9,7 +9,6 @@ import Item from "@mui/material/Grid";
 function App() {
   const [shows, setShows] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
-  const [lastQuery, setLastQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,22 +21,15 @@ function App() {
   }, [searchQuery]);
   const fetchShows = async () => {
     if (searchQuery === '') {
-      console.log(
-        "retrieving last searched item from local storage:",
-        `"${localStorage.getItem("lastQuery")}"`
-      );
       setSearchQuery(localStorage.getItem("lastQuery"));
     }
     const config = { params: { q: searchQuery.toUpperCase() } };
     const cachedShow = localStorage.getItem(`${"lastQuery"}`);
-    console.log("cachedShow", cachedShow, searchQuery.toUpperCase())
     if (cachedShow === searchQuery.toUpperCase() || searchQuery === "") {
-      console.log("retrieving from local storage", cachedShow)
       const data = JSON.parse(localStorage.getItem(`${cachedShow}`));
       localStorage.setItem(`lastQuery`, `${data.name.toUpperCase()}`);
       return data;
     } else {
-      console.log("retrieving from api", config)
       const res = await axios.get(
         "https://api.tvmaze.com/singlesearch/shows",
         config
