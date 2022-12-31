@@ -11,17 +11,17 @@ function showView({ shows }) {
     <Card sx={{ maxWidth: 374 }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" align="center">
-          {shows.show.name}
+          {shows.name}
         </Typography>
         <Typography variant="h5" color="text.secondary" align="center">
-          {shows.show.rating.average} rating
+          {shows.rating.average} rating
         </Typography>
         <CardMedia
           component="img"
-          image={shows.show.image.original}
-          alt={shows.show.name}
+          image={shows.image.original}
+          alt={shows.name}
         />
-        <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: shows.show.summary }}>
+        <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: shows.summary }}>
           {/* {shows.show.summary} */}
         </Typography>
       </CardContent>
